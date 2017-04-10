@@ -382,4 +382,6 @@ var commands = {
     }
 };
 
+start();
+
 clUtils.initialize(commands, 'LWM2M-Server> ');

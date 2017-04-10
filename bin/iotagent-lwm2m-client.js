@@ -28,7 +28,8 @@ var config = require('../config'),
     lwm2mClient = require('../').client,
     async = require('async'),
     globalDeviceInfo,
-    separator = '\n\n\t';
+    separator = '\n\n\t',
+    coap = require('coap-dtls');
 
 function printObject(result) {
     var resourceIds = Object.keys(result.attributes);
@@ -105,7 +106,8 @@ function handleExecute(objectType, objectId, resourceId, value, callback) {
     console.log('-> ResourceId: %s', resourceId);
     console.log('-> Command arguments: %s', value);
     clUtils.prompt();
-
+    //aqui o device recebe os dados e argumentos enviados
+    //desta forma executa determinada funcao
     callback(null);
 }
 
@@ -134,7 +136,7 @@ function connect(command) {
     if (command[2] === '/') {
         url = command[2];
     }
-
+    
     lwm2mClient.register(command[0], command[1], command[3], command[2], function (error, deviceInfo) {
         if (error) {
             clUtils.handleError(error);
@@ -244,4 +246,22 @@ var commands = {
 
 lwm2mClient.init(require('../config'));
 
+create(["/6/0"]);
+
+set(["/6/0", "1", "440"]);
+set(["/6/0", "2", "ON"]);
+set(["/6/0", "3", "999"]);
+
+console.log("port", require('../config').server.port)
+//function connection(){
+connect(["localhost", require('../config').server.port, "sensor01", "elemento/Room"]);
+
+//}
+// write 1 /75001/2/1 200
+//observe 1 /6/0 1 1
+
+//setTimeout(disconnect, 1500);
+//setTimeout(updateConnection, 1500);
+
 clUtils.initialize(commands, 'LWM2M-Client> ');
+
