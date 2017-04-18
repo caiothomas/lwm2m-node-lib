@@ -110,6 +110,7 @@ function write(commands) {
             obj.objectId,
             obj.resourceId,
             commands[2],
+            globalServerInfo,
             handleResult('Value written successfully'));
     } else {
         console.log('\nCouldn\'t parse resource URI: ' + commands[1]);
@@ -126,6 +127,7 @@ function execute(commands) {
             obj.objectId,
             obj.resourceId,
             commands[2],
+            globalServerInfo,
             handleResult('Command executed successfully'));
     } else {
         console.log('\nCouldn\'t parse resource URI: ' + commands[1]);
@@ -134,7 +136,7 @@ function execute(commands) {
 
 
 function discover(commands) {
-    lwm2mServer.discover(commands[0], commands[1], commands[2], commands[3], function handleDiscover(error, payload) {
+    lwm2mServer.discover(commands[0], commands[1], commands[2], commands[3], globalServerInfo, function handleDiscover(error, payload) {
         if (error) {
             clUtils.handleError(error);
         } else {
@@ -164,7 +166,7 @@ function parseDiscoveredType(payload) {
 }
 
 function discoverObj(commands) {
-    lwm2mServer.discover(commands[0], commands[1], commands[2], function handleDiscover(error, payload) {
+    lwm2mServer.discover(commands[0], commands[1], commands[2], globalServerInfo, function handleDiscover(error, payload) {
         if (error) {
             clUtils.handleError(error);
         } else {
@@ -184,7 +186,7 @@ function discoverObj(commands) {
 }
 
 function discoverType(commands) {
-    lwm2mServer.discover(commands[0], commands[1], function handleDiscover(error, payload) {
+    lwm2mServer.discover(commands[0], commands[1], globalServerInfo, function handleDiscover(error, payload) {
         if (error) {
             clUtils.handleError(error);
         } else {
@@ -207,7 +209,7 @@ function read(commands) {
     var obj = parseResourceId(commands[1], false);
 
     if (obj) {
-        lwm2mServer.read(commands[0], obj.objectType, obj.objectId, obj.resourceId, function (error, result) {
+        lwm2mServer.read(commands[0], obj.objectType, obj.objectId, obj.resourceId, globalServerInfo, function (error, result) {
             if (error) {
                 clUtils.handleError(error);
             } else {
@@ -245,7 +247,7 @@ function handleValues(value, objectType, objectId, resourceId, deviceId) {
 }
 
 function observe(commands) {
-    lwm2mServer.observe(commands[0], commands[1], commands[2], commands[3], handleValues, function handleObserve(error) {
+    lwm2mServer.observe(commands[0], commands[1], commands[2], commands[3], handleValues, globalServerInfo, function handleObserve(error) {
         if (error) {
             clUtils.handleError(error);
         } else {
@@ -275,7 +277,7 @@ function writeAttributes(commands) {
     var attributes = parseAttributes(commands[4]);
 
     if (attributes) {
-        lwm2mServer.writeAttributes(commands[0], commands[1], commands[2], commands[3], attributes, function handleObserve(error) {
+        lwm2mServer.writeAttributes(commands[0], commands[1], commands[2], commands[3], attributes, globalServerInfo,function handleObserve(error) {
             if (error) {
                 clUtils.handleError(error);
             } else {
