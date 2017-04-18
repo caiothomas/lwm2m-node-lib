@@ -13,19 +13,19 @@ config.server = {
     formats: [
         {
             name: 'application-vnd-oma-lwm2m/text',
-            value: 1541
+            value: 0
         },
         {
             name: 'application-vnd-oma-lwm2m/tlv',
-            value: 1542
+            value: 11542
         },
         {
             name: 'application-vnd-oma-lwm2m/json',
-            value: 1543
+            value: 11543
         },
         {
             name: 'application-vnd-oma-lwm2m/opaque',
-            value: 1544
+            value: 42
         }
     ],
     writeFormat: 'application-vnd-oma-lwm2m/text',
@@ -66,7 +66,7 @@ config.client = {
     formats: [
         {
             name: 'lightweightm2m/text',
-            value: 1541
+            value: 0
         }
     ],
     writeFormat: 'lightweightm2m/text',
