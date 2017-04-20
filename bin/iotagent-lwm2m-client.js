@@ -246,19 +246,19 @@ var commands = {
 
 lwm2mClient.init(require('../config'));
 
-create(["/6/0"]);
+create(["/3/0"]);
 
-set(["/6/0", "1", "440"]);
-set(["/6/0", "2", "ON"]);
-set(["/6/0", "3", "999"]);
-set(["/6/0", "0", "item0"]);
-set(["/6/0", "4", "item4"]);
-set(["/6/0", "5", "item5"]);
+set(["/3/0", "1", "440"]);
+set(["/3/0", "2", "ON"]);
+set(["/3/0", "3", "999"]);
+set(["/3/0", "0", "item0"]);
+set(["/3/0", "4", "item4"]);
+set(["/3/0", "5", "item5"]);
 
 console.log("port", require('../config').server.port)
 //function connection(){
 //connect(["localhost", require('../config').server.port, "sensor01", "elemento/Room"]);
-connect(["localhost", require('../config').server.port, "sensor01"]);
+connect(["localhost", require('../config').server.port, "caio2"]);
 
 //}
 // write 1 /75001/2/1 200

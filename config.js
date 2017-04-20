@@ -29,17 +29,18 @@ config.server = {
         }
     ],
     writeFormat: 'application-vnd-oma-lwm2m/text',
-    authenticate:  true,    
+    authenticate: true,    
     //conectar com o servidor
+   /*
     dtls_opts : {
       psk:    new Buffer("AAAAAAAAAAAAAAAA"),
       PSKIdent: new Buffer("32323232-3232-3232-3232-323232323232"), 
       key: null,
       peerPublicKey: null
-    }, 
+    }, */
     //chave para o server do cliente
     //o servidor tera que conectar 
-    dtls_opts_server : {
+    dtls_opts : {
         key: "/home/caio/Desktop/fiware/lwm2m-dtls/node-coap-dtls/examples/127_0_0_1.pkey",
         debug: 1,
         handshakeTimeoutMin: 3000
@@ -68,7 +69,7 @@ config.client = {
             name: 'lightweightm2m/text',
             value: 0
         }
-    ],
+    ],    
     writeFormat: 'lightweightm2m/text',
     authenticate:  true,
     //conectar com o servidor
@@ -80,11 +81,12 @@ config.client = {
     }, 
     //chave para o server do cliente
     //o servidor tera que conectar 
+    /*
     dtls_opts_server : {
         key: "/home/caio/Desktop/fiware/lwm2m-dtls/node-coap-dtls/examples/127_0_0_1.pkey",
         debug: 1,
         handshakeTimeoutMin: 3000
-    }
+    }*/
 };
 
 module.exports = config;
