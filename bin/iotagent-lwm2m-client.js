@@ -108,7 +108,9 @@ function handleExecute(objectType, objectId, resourceId, value, callback) {
     clUtils.prompt();
     //aqui o device recebe os dados e argumentos enviados
     //desta forma executa determinada funcao
-    callback(null);
+    if(value == "true")
+        callback(null, "Executado com sucesso");
+    callback(null, "Sem Execute")
 }
 
 function handleRead(objectType, objectId, resourceId, value, callback) {
@@ -246,19 +248,33 @@ var commands = {
 
 lwm2mClient.init(require('../config'));
 
-create(["/3/0"]);
+create(["/6/0"]);
 
-set(["/3/0", "1", "440"]);
-set(["/3/0", "2", "ON"]);
-set(["/3/0", "3", "999"]);
-set(["/3/0", "0", "item0"]);
-set(["/3/0", "4", "item4"]);
-set(["/3/0", "5", "item5"]);
+set(["/6/0", "1", "440"]);
+set(["/6/0", "2", "ON"]);
+set(["/6/0", "3", "999"]);
+set(["/6/0", "0", "item0"]);
+set(["/6/0", "4", "item4"]);
+set(["/6/0", "5", "item5"]);
+set(["/6/0", "6", "item6"]);
+set(["/6/0", "7", "item7"]);
+set(["/6/0", "8", "item8"]);
+set(["/6/0", "9", "item10"]);
+set(["/6/0", "10", "item11"]);
+//set(["/3/0", "11", "item12"]);
+//set(["/3/0", "12", "item13"]);
+//set(["/3/0", "13", "item14"]);
+//set(["/3/0", "14", "item15"]);
+//set(["/3/0", "15", "item15"]);
+//set(["/3/0", "16", "item16"]);
+
+
+
 
 console.log("port", require('../config').server.port)
 //function connection(){
-//connect(["localhost", require('../config').server.port, "sensor01", "elemento/Room"]);
-connect(["localhost", require('../config').server.port, "caio2"]);
+connect(["localhost", require('../config').server.port, "sensor01", "elemento/Room"]);
+//connect(["localhost", require('../config').server.port, "caio2"]);
 
 //}
 // write 1 /75001/2/1 200

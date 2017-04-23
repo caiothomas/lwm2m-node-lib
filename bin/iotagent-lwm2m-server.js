@@ -26,6 +26,7 @@
 var config = require('../config'),
     lwm2mServer = require('../').server,
     async = require('async'),
+    apply = async.apply,        
     clUtils = require('command-node'),
     globalServerInfo,
     separator = '\n\n\t';
@@ -208,7 +209,7 @@ function discoverType(commands) {
 function read(commands) {
     var obj = parseResourceId(commands[1], false);
 
-    if (obj) {
+    if (obj) {      
         lwm2mServer.read(commands[0], obj.objectType, obj.objectId, obj.resourceId, globalServerInfo, function (error, result) {
             if (error) {
                 clUtils.handleError(error);
